@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="StringExtensions.cs">
-//     Copyright (c) 2017-2018 Adam Craven. All rights reserved.
+//     Copyright (c) 2017-2021 Adam Craven. All rights reserved.
 // </copyright>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ namespace System
     {
         #region Private Fields
 
-        private static readonly Regex PlaceholderRegExpression = new Regex(@"\{([^\}]+)\}", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex PlaceholderRegExpression = new(@"\{([^\}]+)\}", RegexOptions.Compiled | RegexOptions.Multiline);
 
         #endregion Private Fields
 
@@ -43,10 +43,10 @@ namespace System
 
         #region Private Methods
 
-        public static string ConvertNamedPlaceholdersToIndexes(string template)
+        private static string ConvertNamedPlaceholdersToIndexes(string template)
         {
             int index = 0;
-            return PlaceholderRegExpression.Replace(template, (match) => $"{{{index++}}}");
+            return PlaceholderRegExpression.Replace(template, (_) => $"{{{index++}}}");
         }
 
         #endregion Private Methods
